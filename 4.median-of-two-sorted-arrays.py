@@ -38,4 +38,3 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: float
         """
-
