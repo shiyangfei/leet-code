@@ -11,5 +11,4 @@ class Solution(object):
                 return [num_map[target - num], index]
             num_map[num] = index
 
-
 # Solution().twoSum([3, 2, 4], 6)
