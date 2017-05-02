@@ -4,29 +4,10 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        end = False
-        string_length = len(s)
-        result = 1 if string_length >= 1 else 0
-        while string_length > result and end is not True:
-            unit_result, s, end = get_substring(s)
-            result = unit_result if unit_result > result else result
-            if end is not True:
-                string_length = len(s)
-        print result
+        result = 0
+
+        print(result)
         return result
-
-
-def get_substring(s):
-    c_map = {}
-    result = 0
-    for index, c in enumerate(s):
-        target_index = c_map.get(c)
-        if target_index is not None:
-            return result, s[target_index + 1:], False
-        else:
-            c_map[c] = index
-            result += 1
-    return result, '', True
 
 
 Solution().lengthOfLongestSubstring(
