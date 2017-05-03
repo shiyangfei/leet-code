@@ -30,5 +30,11 @@ class Solution(object):
         """
         array = s.split(' ')
         length = len(array)
-        last_item = array(length - 1)
-        if last_item.
+        index = length - 1
+        while index >= 0:
+            item = array[index]
+            if item != '':
+                return len(item)
+            else:
+                index -= 1
+        return 0
