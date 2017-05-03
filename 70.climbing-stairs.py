@@ -26,10 +26,12 @@ class Solution(object):
         result = 0
         count_of_1 = input_val
         count_of_2 = 0
-        while count_of_2 * 2 <= input_val / 2:
+        while True:
             result += choose(count_of_1 + count_of_2, count_of_2)
             count_of_2 += 1
-            count_of_1 -= 1
+            count_of_1 -= 2
+            if count_of_1 < 0:
+                break
         return result
 
 
