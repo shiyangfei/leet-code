@@ -30,21 +30,29 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
+        nums = sorted(nums)
+        result = []
+        result_map = {}
         level_1_num_map = {}
         for level_1_index, level_1_num in enumerate(nums):
             if level_1_num in level_1_num_map:
                 continue
             level_1_num_map[level_1_num] = True
             level_1_target = 0 - level_1_num
-            level_2_num_map = {}
+            level_2_target_map = {}
             for level_2_index, level_2_num in enumerate(nums):
-                if level_2_index == level_1_index:
+                if level_2_index <= level_1_index:
                     continue
-                if level_2_num in level_2_num_map:
+                if level_2_num in level_2_target_map:
+                    unit_list = [level_1_num, level_2_target_map[level_2_num], level_2_num]
+                    unit_list_str = str(unit_list)
+                    if unit_list_str not in result_map:
+                        result.insert(
+                            0,
+                            unit_list
+                        )
+                        result_map[str(unit_list)] = True
                     continue
-                level_2_num_map[level_2_num] = level_1_target - level_2_num
-
-
-
-
-
+                level_2_target = level_1_target - level_2_num
+                level_2_target_map[level_2_target] = level_2_num
+        return result
