@@ -30,21 +30,26 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        level_1_num_map = {}
-        for level_1_index, level_1_num in enumerate(nums):
-            if level_1_num in level_1_num_map:
+        nums.sort()
+        length = len(nums)
+        result = []
+        for i in range(0, length - 2):
+            if i and nums[i] == nums[i - 1]:
                 continue
-            level_1_num_map[level_1_num] = True
-            level_1_target = 0 - level_1_num
-            level_2_num_map = {}
-            for level_2_index, level_2_num in enumerate(nums):
-                if level_2_index == level_1_index:
-                    continue
-                if level_2_num in level_2_num_map:
-                    continue
-                level_2_num_map[level_2_num] = level_1_target - level_2_num
-
-
-
-
-
+            target = 0 - nums[i]
+            left = i + 1
+            right = length - 1
+            while left < right:
+                if nums[left] + nums[right] == target:
+                    result.append([nums[i], nums[left], nums[right]])
+                    right -= 1
+                    left += 1
+                    while left < right and nums[right] == nums[right + 1]:
+                        right -= 1
+                    while left < right and nums[left] == nums[left - 1]:
+                        left += 1
+                elif nums[left] + nums[right] > target:
+                    right -= 1
+                else:
+                    left += 1
+        return result
