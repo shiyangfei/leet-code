@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # [18] 4Sum
 #
@@ -36,12 +37,12 @@ class Solution(object):
         nums.sort()
         length = len(nums)
         result = []
-        for i in range(0, length - 2):
-            if i and nums[i] == nums[i - 1]:
+        for i in range(0, length - 3):
+            if i > 0 and nums[i] == nums[i - 1]:
                 continue
             target_1 = target - nums[i]
-            for j in range(i + 1, length - 3):
-                if nums[j] == nums[j - 1]:
+            for j in range(i + 1, length - 2):
+                if j > i + 1 and nums[j] == nums[j - 1]:
                     continue
                 target_2 = target_1 - nums[j]
                 left = j + 1
@@ -55,8 +56,11 @@ class Solution(object):
                             right -= 1
                         while left < right and nums[left] == nums[left - 1]:
                             left += 1
-                    elif nums[left] + nums[right] > target:
+                    elif nums[left] + nums[right] > target_2:
                         right -= 1
                     else:
                         left += 1
         return result
+
+
+Solution().fourSum([0, 0, 0, 0], 0)
