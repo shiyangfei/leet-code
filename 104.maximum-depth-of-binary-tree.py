@@ -21,18 +21,16 @@
 #         self.right = None
 
 class Solution(object):
-    def __init__(self):
-        self.depth = 0
-
-    def get_depth(self, node, depth):
-        if depth > self.depth:
-            self.depth = depth
+    def get_depth(self, node, depth, max_depth):
+        if depth > max_depth:
+            max_depth = depth
         if node.left:
             left_depth = depth + 1
-            self.get_depth(node.left, left_depth)
+            max_depth = self.get_depth(node.left, left_depth, max_depth)
         if node.right:
             right_depth = depth + 1
-            self.get_depth(node.right, right_depth)
+            max_depth = self.get_depth(node.right, right_depth, max_depth)
+        return max_depth
 
     def maxDepth(self, root):
         """
@@ -41,5 +39,5 @@ class Solution(object):
         """
         if root is None:
             return 0
-        self.get_depth(root, 1)
-        return self.depth
+        max_depth = self.get_depth(root, 1, 1)
+        return max_depth
