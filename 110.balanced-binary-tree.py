@@ -45,9 +45,16 @@ class Solution(object):
     def is_node_balanced(self, node):
         if node is None:
             return True
+        is_left_balanced = self.is_node_balanced(node.left)
+        if is_left_balanced is False:
+            return False
+        is_right_balanced = self.is_node_balanced(node.right)
+        if is_right_balanced is False:
+            return False
         self_balanced = abs(self.get_node_depth(node.left) - self.get_node_depth(node.right)) <= 1
-        children_balanced = self.is_node_balanced(node.left) and self.is_node_balanced(node.right)
-        return self_balanced and children_balanced
+        if self_balanced is False:
+            return False
+        return True
 
     def isBalanced(self, root):
         """
