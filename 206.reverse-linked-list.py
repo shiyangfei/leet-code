@@ -17,21 +17,16 @@
 #         self.next = None
 
 class Solution(object):
+    def reverse(self, node, prev=None):
+        if not node:
+            return prev
+        n = node.next
+        node.next = prev
+        return self.reverse(n, node)
+
     def reverseList(self, head):
         """
         :type head: ListNode
         :rtype: ListNode
         """
-        if head is None or head.next is None:
-            return head
-        node_list = []
-        curr = head
-        while curr is not None:
-            node_list.append(curr)
-            curr = curr.next
-        length = len(node_list)
-        index = length - 1
-        while index >= 1:
-            node_list[index].next = node_list[index - 1]
-            index -= 1
-        return node_list[length - 1]
+        return self.reverse(head)
