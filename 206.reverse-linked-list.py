@@ -8,8 +8,6 @@
 # Total Submissions: 
 # Testcase Example:  '[]'
 #
-# Can you solve this problem? 🤔
-#
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, x):

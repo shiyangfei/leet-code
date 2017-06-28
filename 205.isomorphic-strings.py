@@ -8,8 +8,6 @@
 # Total Submissions: 
 # Testcase Example:  '"egg"\n"add"'
 #
-# Can you solve this problem? 🤔
-#
 class Solution(object):
     def isIsomorphic(self, s, t):
         """
