@@ -3,7 +3,7 @@
 #
 # https://leetcode.com/problems/implement-stack-using-queues
 #
-# Easy (32.49%)
+# Easy (32.42%)
 # Total Accepted:    
 # Total Submissions: 
 # Testcase Example:  '["MyStack","empty"]\n[[],[]]'
@@ -41,7 +41,6 @@
 #
 import collections
 
-
 class Queue:
     def __init__(self):
         self.data = collections.deque()
@@ -61,13 +60,14 @@ class Queue:
     def empty(self):
         return len(self.data) == 0
 
-
 class MyStack(object):
+
     def __init__(self):
         """
         Initialize your data structure here.
         """
-        self.data = Queue()
+        self.q_ = Queue()
+        
 
     def push(self, x):
         """
@@ -75,24 +75,35 @@ class MyStack(object):
         :type x: int
         :rtype: void
         """
+        self.q_.push(x)
+        for _ in range(0, self.q_.size() - 1):
+            self.q_.push(self.q_.pop())
+        
 
     def pop(self):
         """
         Removes the element on top of the stack and returns that element.
         :rtype: int
         """
+        return self.q_.pop()
+        
 
     def top(self):
         """
         Get the top element.
         :rtype: int
         """
+        return self.q_.peek()
+        
 
     def empty(self):
         """
         Returns whether the stack is empty.
         :rtype: bool
         """
+        return self.q_.empty()
+        
+
 
 # Your MyStack object will be instantiated and called as such:
 # obj = MyStack()
