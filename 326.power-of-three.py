@@ -21,6 +21,8 @@
 # test cases.
 #
 import math
+
+
 class Solution(object):
     def helper(self, n):
         n = int(n)
