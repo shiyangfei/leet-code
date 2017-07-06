@@ -32,34 +32,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        if len(nums) == 0:
-            return 0
-        result = None
-        temp_result = None
-        current_array = None
-        for index, num in enumerate(nums):
-            if index == 0:
-                result = num
-                temp_result = num
-                current_array = [num]
-                continue
-            if num < 0:
-                if temp_result >= 0:
-                    if temp_result + num > 0:
-                        temp_result = temp_result + num
-                        current_array.append(num)
-                    else:
-                        temp_result = 0
-                        current_array = []
-                else:
-                    temp_result = num if num > temp_result else temp_result
-                    current_array = [num] if num > temp_result else []
+        sum_val = 0
+        max_sum = None
+
+        for i in range(0, len(nums)):
+            if sum_val < 0:
+                sum_val = 0
+            sum_val = sum_val + nums[i]
+            if max_sum is None:
+                max_sum = sum_val
             else:
-                if temp_result >= 0:
-                    temp_result += num
-                    current_array.append(num)
-                else:
-                    temp_result = num
-                    current_array = [num]
-            result = temp_result if temp_result >= result else result
-        return result
+                max_sum = max(sum_val, max_sum)
+        return max_sum
