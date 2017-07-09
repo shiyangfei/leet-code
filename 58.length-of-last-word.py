@@ -33,8 +33,10 @@ class Solution(object):
         index = length - 1
         while index >= 0:
             item = array[index]
-            if item != '':
+            # only if the item is a valid word, return its len
+            if len(item) > 0:
                 return len(item)
             else:
                 index -= 1
+        # cannot find a valid word. return 0
         return 0
