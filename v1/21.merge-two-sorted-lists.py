@@ -38,13 +38,29 @@ class Solution(object):
             return l2
         if l2 is None:
             return l1
-        node1 = l1
-        node2 = l2
-        while node1 is not None:
-            temp1 = node1.next
-            temp2 = node2.next
-            node1.next = node2
-            node2.next = temp1
-            temp1.next = temp2
-            node1 =
-
+        if l1.val <= l2.val:
+            result_root = l1
+            node1 = l1.next
+            node2 = l2
+        else:
+            result_root = l2
+            node1 = l1
+            node2 = l2.next
+        result_curr = result_root
+        while True:
+            if node1 is None and node2 is None:
+                return result_root
+            if node1 is not None and node2 is None:
+                result_curr.next = node1
+                return result_root
+            if node1 is None and node2 is not None:
+                result_curr.next = node2
+                return result_root
+            if node1 is not None and node2 is not None:
+                if node1.val <= node2.val:
+                    result_curr.next = node1
+                    node1 = node1.next
+                else:
+                    result_curr.next = node2
+                    node2 = node2.next
+                result_curr = result_curr.next
