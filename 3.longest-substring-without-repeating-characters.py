@@ -27,13 +27,22 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        ans, start, end = 0, 0, 0
-        countDict = {}
-        for c in s:
-            end += 1
-            countDict[c] = countDict.get(c, 0) + 1
-            while countDict[c] > 1:
-                countDict[s[start]] -= 1
+        result = 0
+        length = len(s)
+        start, end = 0, 0
+        c_map = dict()
+        while True:
+            if end >= length:
+                break
+            c = s[end]
+            if c_map.get(c) is None:
+                c_map[c] = 0
+            c_map[c] = c_map[c] + 1
+            # when there is a dupe c, move start to right
+            while c_map[c] > 1:
+                c_map[s[start]] = c_map[s[start]] - 1
                 start += 1
-            ans = max(ans, end - start)
-        return ans
+            new_length = end - start + 1
+            result = result if new_length <= result else new_length
+            end += 1
+        return result
