@@ -63,5 +63,3 @@ class Solution(object):
             if valid:
                 return pointer_index
         return -1
-
-Solution().strStr('hello', 'll')
