@@ -50,6 +50,7 @@ class MyQueue(object):
         """
         Initialize your data structure here.
         """
+        self.data = []
         
 
     def push(self, x):
@@ -58,6 +59,7 @@ class MyQueue(object):
         :type x: int
         :rtype: None
         """
+        self.data.append(x)
         
 
     def pop(self):
@@ -65,6 +67,9 @@ class MyQueue(object):
         Removes the element from in front of queue and returns that element.
         :rtype: int
         """
+        item = self.data[0]
+        self.data.remove(self.data[0])
+        return item
         
 
     def peek(self):
@@ -72,6 +77,7 @@ class MyQueue(object):
         Get the front element.
         :rtype: int
         """
+        return self.data[0]
         
 
     def empty(self):
@@ -79,7 +85,7 @@ class MyQueue(object):
         Returns whether the queue is empty.
         :rtype: bool
         """
-        
+        return len(self.data) == 0
 
 
 # Your MyQueue object will be instantiated and called as such:
