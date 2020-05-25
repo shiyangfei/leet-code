@@ -1,3 +1,3 @@
 #!/bin/bash
 echo "List leetcode questions"
-leetcode list -q eDL -t algorithms
+leetcode list -q mDL -t algorithms
