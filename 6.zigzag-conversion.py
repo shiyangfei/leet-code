@@ -56,29 +56,27 @@ class Solution(object):
         :type numRows: int
         :rtype: str
         """
-        PLACE_HOLDER = 0
-        matrix = []
-        i = 0
-        j = 0
-        # could be right or bottom_left
-        direction = 'right'
-        for c_index in range(0, len(s)):
-            c = s[c_index]
-            # create place holder row
-            if i > len(matrix) - 1:
-                matrix.append([PLACE_HOLDER] * numRows)
-            matrix[i][j] = c
-            if j == 0:
-                direction = 'right'
-            if j == numRows - 1:
-                direction = 'bottom_left'
-            i = i if direction == 'right' else i + 1
-            j = min(numRows - 1, j + 1) if direction == 'right' else max(0, j - 1)
+        if numRows <= 1:
+            return s
+        gaps = [1 + (numRows - 2) * 2, -1]
         res = ''
-        for col_index in range(0, numRows):
-            for row in matrix:
-                cell = row[col_index]
-                if cell != PLACE_HOLDER:
-                    res += cell
+        row_index = 0
+        while gaps[0] >= -1:
+            gap_index = 0
+            skip = False
+            cur_index = row_index
+            while cur_index < len(s):
+                if not skip:
+                    res += s[cur_index]
+                gap = gaps[gap_index]
+                gap_index = 1 if gap_index == 0 else 0
+                if gap > 0:
+                    cur_index = cur_index + gap + 1
+                    skip = False
+                else:
+                    skip = True
+
+            gaps = [gaps[0] - 2, gaps[1] + 2]
+            row_index += 1
         return res
 
